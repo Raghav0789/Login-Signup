@@ -5,6 +5,12 @@ async function addUser(req,res) {
     try {
         console.log(req.body);
         let user = new Users(req.body);
+        if (req.body.PassWord==req.body.ConfirmPass) {
+            await user.save();
+            res.render('login');
+        } else {
+            res.end("Password Did'nt match")
+        }
         await user.save();
         res.render('login');
         
