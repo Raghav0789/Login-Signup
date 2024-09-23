@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <style>
+        /* Basic styling for the form container */
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        /* Style for input fields */
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        /* Style for the register button */
+        .registerbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        /* Style for the sign-in link */
+        .container.signin {
+            text-align: center;
+        }
+
+        /* Add more styles as needed */
+    </style>
+</head>
+<body>
+    <form action="/add/user" method="post">
+        <div class="container">
+            <h1>Register</h1>
+            <p>Please fill in this form to create an account.</p>
+            <hr>
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" id="email" required>
+
+            <label for="FirstName"><b>First Name</b></label>
+            <input type="text" placeholder="Enter Name" name="FirstName" id="FirstName" required>
+
+            <label for="LastName"><b>Last Name</b></label>
+            <input type="text" placeholder="Enter Name" name="LastName" id="LastName" required>
+
+            <label for="Password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="PassWord" id="Password" required>
+
+            <label for="Confirm Password"><b>Confirm Password</b></label>
+            <input type="password" placeholder="Enter Password"  id="Password" required>
+
+            <label for="Mobile Number"><b>Mobile Number</b></label>
+            <input type="number" placeholder="Mobile Number" name="MobileNo" id="MobileNo" required>
+
+            <hr>
+            <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+            <button type="submit" class="registerbtn">Register</button>
+        </div>
+        <div class="container signin">
+            <p>Already have an account? <a href="/login">Log In</a>.</p>
+        </div>
+    </form>
+</body>
+</html>
