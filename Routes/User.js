@@ -18,4 +18,16 @@ router.post('/add/user',(req,res)=>{
 router.post('/login/user',(req,res)=>{
     UserContoller.getUser(req,res);
 })
+router.get('/users',(req,res)=>{
+    UserContoller.getUsers(req,res);
+})
+router.get('/edit/user/page/:id',(req,res)=>{
+    UserContoller.getUserForEdit(req,res);
+})
+router.post('/update/user/:id',(req,res)=>{
+    UserContoller.UpdateUser(req,res);
+})
+router.get('/delete/user/page/:id',(req,res)=>{
+    UserContoller.deleteUser(req,res);
+})
 module.exports = router

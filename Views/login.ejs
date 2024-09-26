@@ -6,74 +6,153 @@
     <title>Login Page</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #b8754f, #63605e);
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            color: #000;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            height: 80vh;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
         }
 
         .login-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            padding: 60px;
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-size: cover; /* Cover the entire container */
+            background-position: center; /* Center the image */
+            background-color:  #b8764fcb; /* Semi-transparent overlay */
         }
 
         .login-container h1 {
             text-align: center;
             margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
             font-weight: bold;
+            margin-bottom: 5px;
         }
 
         .form-group input[type="text"],
         .form-group input[type="password"] {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ccc;
+            border: none;
+            border-bottom: 2px solid #6a11cb;
             border-radius: 3px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="password"]:focus {
+            border-bottom: 2px solid #2575fc;
         }
 
         .form-group button {
             width: 100%;
-            padding: 10px;
-            background-color: #007bff;
+            padding: 12px;
+            background-color: #add8e6; /* Light blue color */
             color: #fff;
             border: none;
-            border-radius: 3px;
+            border-radius: 25px; /* Rounded corners */
             cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 3D effect */
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .form-group button:hover {
+            background-color: #87cefa; /* Slightly darker blue on hover */
+            transform: translateY(-2px);
+        }
+
+        .container.signin {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .container.signin p {
+            font-size: 14px;
+            margin-bottom: 10px; /* Added margin for spacing */
+        }
+
+        .container.signin a {
+            color: #2575fc;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: bold; /* Enhanced font weight */
+        }
+
+        .container.signin a:hover {
+            color: #1e4c8a;
+        }
+
+        .image-container {
+            width: 60%; /* Takes 60% of the width */
+            background-image: url(http://surl.li/pfekmi); /* Replace with actual bookshelf image URL */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Centering content */
+            color: #333;
+        }
+
+        .image-container .signup-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h1>Login</h1>
-        <form action="/login/user" method="post">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username or Email" required>
+    <div class="main-container">
+        <div class="login-container">
+            <h1>Login</h1>
+            <form action="/login/user" method="post">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username or email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <div class="image-container">
+            <div class="signup-text">
+                <p style="font-style:italic; color: #fff; font-weight: bold;" >Don't have an account?</p>
+                <a href="/signup">Sign Up</a>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-            </div>
-            <button type="submit">Login</button>
-            <div class="container signin">
-                <p>Don't have an account? <a href="/signup">SignUp</a>.</p>
-            </div>
-        </form>
+        </div>
     </div>
 </body>
 </html>
