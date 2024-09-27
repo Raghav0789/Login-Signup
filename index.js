@@ -5,8 +5,10 @@ const connection = require('./Connection');
 const user = require('./Routes/User');
 const book = require('./Routes/Book')
 const app = express();
+const common = require('./helper/common');
 connection();
 // connection2();
+// common.createAdmin();
 app.use(user);
 app.use(book);
 app.use(express.json());

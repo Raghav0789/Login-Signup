@@ -1,11 +1,22 @@
+const bcrypt = require('bcrypt');
 const { log } = require('console');
 const Users = require('../Models/Users');
+const saltRound = 10;
+
 
 async function addUser(req,res) {
     try {
         console.log(req.body);
+        let password = bcrypt.hashSync(req.body.PassWord,saltRound);
+        console.log(password);
+        //check id has been alredy registerd or not;
+        let userExits = await Users.find({email:req.body.email})
+        if(userExits){
+            res.end("<h1>User Already Exists </h1>")
+        }
         let user = new Users(req.body);
         if (req.body.PassWord==req.body.ConfirmPass) {
+            user.PassWord=password;
             user.userType=2;
             await user.save();
             res.render('login');
@@ -13,7 +24,7 @@ async function addUser(req,res) {
             res.end("Password Did'nt match")
         }
         await user.save();
-        res.render('login');    
+        res.redirect('login');    
     } catch (err) {
         console.log(err);
         
@@ -26,11 +37,18 @@ async function getUser(req,res) {
         let password = req.body.password;
         console.log(username,'username');
         console.log(password,'password');
-        let user = await Users.findOne({ email: username, PassWord: password });
+        let user = await Users.findOne({ email: username});
         if (user) {
-            res.render('home',{
-                user:user
-            });
+            let isMatch = bcrypt.compare(req.body.PassWord,user.PassWord);
+            if(isMatch){
+                res.render('home',{
+                    user:user
+                });
+            }
+            else{
+                res.end("<h1> Password didn't match </h1>")
+            }
+            
         } else {
             res.end("Can't find user");
         }
