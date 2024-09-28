@@ -1,30 +1,31 @@
 <%- include('./base/header.ejs') %>
-    <div class="container">
+<%- include('./base/sideBar.ejs') %>
+    <div style="margin-top: 50px; margin-left: 250px; padding-right: 2.5%; position: fixed;" class="container">
         <div class="alert bg-success my-3">
-            <h4 class="text-center" style="color: aliceblue;">Update Student </h4>
+            <h4 class="text-center" style="color: aliceblue;">Update User </h4>
         </div>
     </div>
-    <div class="container">
+    <div style="margin-top: 150px; margin-left: 250px; position: fixed; max-height: 400px; overflow-y: auto; " class="container">
         <div class="row">
             <div class="col"></div>
             <div class="col">
                 <form action="/update/user/<%= user._id %>" method="post">
-                    <label class="form-lable" for="email"><b>Email</b></label>
+                    <label class="form-label" for="email"><b>Email</b></label>
                     <input class="form-control" type="text" placeholder="Enter Email" name="email" value="<%= user.email %>" id="email" required>
     
-                    <label class="form-lable" for="FirstName"><b>First Name</b></label>
+                    <label class="form-label" for="FirstName"><b>First Name</b></label>
                     <input class="form-control" type="text" placeholder="Enter Name" name="FirstName" value="<%= user.FirstName %>" id="FirstName" required>
     
-                    <label class="form-lable" for="LastName"><b>Last Name</b></label>
-                    <input class="form-control"  type="text" placeholder="Enter Name" name="LastName" value="<%= user.LastName %>" id="LastName" required>
+                    <label class="form-label" for="LastName"><b>Last Name</b></label>
+                    <input class="form-control" type="text" placeholder="Enter Name" name="LastName" value="<%= user.LastName %>" id="LastName" required>
     
-                    <label class="form-lable" for="Password"><b>Password</b></label>
+                    <label class="form-label" for="Password"><b>Password</b></label>
                     <input class="form-control" type="password" placeholder="Enter Password" name="PassWord" value="<%= user.PassWord %>" id="Password" required>
     
-                    <label class="form-lable" for="Confirm Password"><b>Confirm Password</b></label>
+                    <label class="form-label" for="ConfirmPassword"><b>Confirm Password</b></label>
                     <input class="form-control" type="password" placeholder="Enter Password" name="ConfirmPass" value="<%= user.ConfirmPass %>" id="ConfirmPassword" required>
     
-                    <label class="form-lable" for="Mobile Number"><b>Mobile Number</b></label>
+                    <label class="form-label" for="MobileNo"><b>Mobile Number</b></label>
                     <input class="form-control" type="number" placeholder="Mobile Number" name="MobileNo" value="<%= user.MobileNo %>" id="MobileNo" required>
     
                     <hr>
@@ -33,7 +34,7 @@
                 </form>
             </div>
             <div class="col"></div>
-
         </div>
     </div>
+    
 <%- include('./base/footer.ejs')%>

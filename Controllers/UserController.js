@@ -103,7 +103,7 @@ async function UpdateUser(req,res) {
         user.LastName = req.body.LastName;
         user.MobileNo = req.body.MobileNo;
         if(req.body.PassWord == req.body.ConfirmPass){
-            user.PassWord = req.body.PassWord;
+            user.PassWord = bcrypt.hashSync(req.body.PassWord,saltRound);
         }
         else{
             res.end("Password not match....")
