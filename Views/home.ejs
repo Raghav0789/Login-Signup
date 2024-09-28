@@ -1,55 +1,10 @@
 <%- include('./base/header.ejs') %>
-<style>
 
-
-    .main-container {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        height: 100vh;
-        background-color: rgba(255, 255, 255, 0.9);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        overflow: hidden;
-    }
-
-    .left-container {
-        padding: 10px;
-        width: 20%;
-        display: flex;
-        flex-direction: column;
-        justify-content: top;
-        background-size: cover; /* Cover the entire container */
-        background-position: center; /* Center the image */
-        background-color:  #3fbbeccb; /* Semi-transparent overlay */
-    }
-
-    .left-container a{
-        margin: 10px;
-    }
-    
-
-    .right-container {
-        width: 80%; /* Takes 60% of the width */
-        background-size: cover;
-        background-position: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column; /* Centering content */
-        /* color: #fff; */
-    }
-
-</style>
 <div class="main-container">
-    <div class="left-container">
-      <a href="/users" class="btn btn-outline-success">Users LIst</a>
-      <a href="/books/list" class="btn btn-outline-success">Books</a>
+    <%- include('./base/sideBar.ejs') %>
+    <div style="margin-top: 50px; margin-left: 250px; position: fixed;" >
+        <h1>Welcome, <%= user.FirstName + " " + user.LastName %>!</h1>
     </div>
-    <div class="right-container" >
-        <h1> Welcome <%= user.FirstName+" "+user.LastName %> </h1>
-
-    </div>
-    
 </div>
 
-<%- include('./base/footer.ejs')%>
+<%- include('./base/footer.ejs') %>

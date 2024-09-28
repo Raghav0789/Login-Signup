@@ -30,35 +30,44 @@ async function addUser(req,res) {
         
     }
 }
-async function getUser(req,res) {
+async function getUser(req, res) {
     try {
         console.log(req.body);
-        let username = req.body.username;
-        let password = req.body.password;
-        console.log(username,'username');
-        console.log(password,'password');
-        let user = await Users.findOne({ email: username});
+        const { username, password } = req.body;
+
+        console.log(username, 'username');
+        console.log(password, 'password');
+
+        // Find user by email
+        let user = await Users.findOne({ email: username });
+
         if (user) {
-            let isMatch = bcrypt.compare(req.body.PassWord,user.PassWord);
-            if(isMatch){
-                res.render('home',{
-                    user:user
-                });
-            }
-            else{
-                res.end("<h1> Password didn't match </h1>")
-            }
+            // Compare provided password with stored hash
+            let isMatch = await bcrypt.compare(password, user.PassWord);
             
+            if (isMatch) {
+                // Check if the user is admin (userType 1)
+                if (user.userType == 1) {
+                    return res.render('home', {
+                        user: user
+                    }); // Render admin home page
+                } else {
+                    return res.render('userHome', {
+                        user: user
+                    }); // Render regular user home page
+                }
+            } else {
+                return res.status(401).send("<h1>Password didn't match</h1>");
+            }
         } else {
-            res.end("Can't find user");
+            return res.status(404).send("User not found");
         }
     } catch (err) {
-        console.log(err);
-        
+        console.error(err);
+        return res.status(500).send("Internal Server Error");
     }
-
-
 }
+
 async function getUsers(req,res){
     try {
         let users = await Users.find({});

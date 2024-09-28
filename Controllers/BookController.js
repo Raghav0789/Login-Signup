@@ -6,7 +6,10 @@ async function addBook(req,res){
         let Book = new Books(req.body);
         Book.isbn = await Book._id;
         await Book.save();
-        res.end("Book is added.");   
+        let books = await Books.find({});
+        res.render('bookList',{
+            books:books
+        })  
     } catch (err) {
         console.log(err);
         
@@ -36,8 +39,41 @@ async function deleteBook(req,res) {
         
     }
 }
+async function getBookForEdit(req,res) {
+    try {
+        let id = req.params.id;
+        let book = await Books.findOne({_id:id});
+        if(book){
+            res.render('UpdateBook',{
+                book:book
+            })
+        }
+    } catch (err) {
+        console.log(err);
+        
+    }
+}
+async function updateBook(req,res) {
+    let id = req.params.id;
+    let book = await Books.findOne({_id:id});
+    book.bookTitle = req.body.bookTitle;
+    book.publisher = req.body.publisher;
+    book.price = req.body.price;
+    book.language = req.body.language;
+    book.edition = req.body.edition;
+    book.noOfPages = req.body.noOfPages;
+    book.country = req.body.country;
+    await book.save();
+    books = await Books.find({});
+    res.render('bookList',{
+        books : books
+    })
+
+}
 module.exports={
     addBook,
     getBooks,
-    deleteBook
+    deleteBook,
+    getBookForEdit,
+    updateBook
 }

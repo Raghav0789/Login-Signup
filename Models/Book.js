@@ -10,6 +10,7 @@ let BookSchema = new Schema({
     noOfPages : {type : String , require : true},
     isbn : {type : String , require : true},
     country : {type : String , require : true},
+    bookImage : {type : String}
 
 
 })
