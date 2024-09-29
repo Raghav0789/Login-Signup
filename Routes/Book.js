@@ -25,4 +25,16 @@ router.get('/book/update/page/:id',(req,res)=>{
 router.post('/book/update/:id',(req,res)=>{
      BookContoller.updateBook(req,res);
 })
+router.get('/user/book/list',(req,res)=>{
+     BookContoller.getBookForUser(req,res);
+})
+router.get('/user/home',(req,res)=>{
+     res.render('userHome');
+})
+router.get('/contact',(req,res)=>{
+     res.render('Contact');
+})
+router.get('/about',(req,res)=>{
+     res.render('AboutUs');
+})
 module.exports=router;

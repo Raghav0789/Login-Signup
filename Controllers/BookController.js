@@ -70,10 +70,22 @@ async function updateBook(req,res) {
     })
 
 }
+async function getBookForUser(req,res) {
+    try {
+        let books = await Books.find({});  
+        res.render('BookListForUser.ejs',({
+            books:books
+        }))
+    } catch (err) {
+        console.log(err);
+        
+    }
+}
 module.exports={
     addBook,
     getBooks,
     deleteBook,
     getBookForEdit,
-    updateBook
+    updateBook,
+    getBookForUser
 }
